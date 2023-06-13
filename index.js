@@ -12,9 +12,13 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(favicon(path.join(__dirname, "logo.png")));
 
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "index.html"));
+    res.sendFile(path.join(__dirname, "views/login.html"));
+});
+
+app.get("/dashboard", (req, res) => {
+    res.sendFile(path.join(__dirname, "views/dashboard.html"));
 });
 
 app.listen(port, () => {
     console.log(`SmartStock GPS listening on http://localhost:${port}`)
-})
+});
