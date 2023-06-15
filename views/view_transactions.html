@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SmartStock GPS</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    ></script>
+  </head>
+  <body>
+    <div class="container-fluid pt-3">
+      <div class="d-flex gap-4">
+        <div class="d-flex flex-column align-items-start gap-3">
+          <div class="d-flex gap-4">
+            <button
+              class="btn btn-primary"
+              style="width: fit-content"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseExample"
+              aria-expanded="false"
+              aria-controls="collapseExample"
+            >
+              ↓ Filters
+            </button>
+          </div>
+          <div class="collapse container-fluid" id="collapseExample">
+            <div class="d-md-flex d-grid gap-3 p-3 border rounded">
+              <div class="d-flex flex-column align-items-start">
+                <label class="form-label h6">Date</label>
+                <div class="btn-group">
+                  <button
+                    style="width: fit-content"
+                    type="button"
+                    class="btn btn-primary dropdown-toggle"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    Select
+                  </button>
+                  <ul class="dropdown-menu" style="padding: 0.5rem">
+                    <li><h6 class="dropdown-header">Select one</h6></li>
+                    <div class="d-flex flex-column gap-3">
+                      <li>
+                        <label for="min-date" class="form-label"
+                          >Minimum Date</label
+                        >
+                        <div class="input-group">
+                          <input
+                            id="min-date"
+                            type="date"
+                            class="form-control"
+                            aria-label="name"
+                          />
+                        </div>
+                      </li>
+                      <li>
+                        <label for="max-date" class="form-label"
+                          >Maximum Date</label
+                        >
+                        <div class="input-group">
+                          <input
+                            id="max-date"
+                            type="date"
+                            class="form-control"
+                            aria-label="name"
+                          />
+                        </div>
+                      </li>
+                    </div>
+                  </ul>
+                </div>
+              </div>
+              <div class="d-flex flex-column align-items-start">
+                <label class="form-label h6">Name</label>
+                <div class="btn-group">
+                  <button
+                    style="width: fit-content"
+                    type="button"
+                    class="btn btn-primary dropdown-toggle"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    Select
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li><h6 class="dropdown-header">Select one</h6></li>
+                    <li><a class="dropdown-item" href="#">Item 1</a></li>
+                    <li><a class="dropdown-item" href="#">Item 2</a></li>
+                    <li><a class="dropdown-item" href="#">Item 3</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="d-flex flex-column align-items-start">
+                <label class="form-label h6">Operator</label>
+                <div class="btn-group">
+                  <button
+                    style="width: fit-content"
+                    type="button"
+                    class="btn btn-primary dropdown-toggle"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    Select
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li><h6 class="dropdown-header">Select one</h6></li>
+                    <li><a class="dropdown-item" href="#">Item 1</a></li>
+                    <li><a class="dropdown-item" href="#">Item 2</a></li>
+                    <li><a class="dropdown-item" href="#">Item 3</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="d-flex flex-column align-items-start">
+                <label class="form-label h6">Quantity</label>
+                <div class="btn-group">
+                  <button
+                    style="width: fit-content"
+                    type="button"
+                    class="btn btn-primary dropdown-toggle"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    Select
+                  </button>
+                  <ul class="dropdown-menu" style="padding: 0.5rem">
+                    <li><h6 class="dropdown-header">Select one</h6></li>
+                    <div class="d-flex flex-column gap-3">
+                      <li>
+                        <div class="form-floating">
+                          <input
+                            type="number"
+                            class="form-control"
+                            id="floatingInput"
+                            placeholder="Minimum"
+                            style="min-width: 10rem"
+                          />
+                          <label for="floatingInput">Minimum</label>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="form-floating">
+                          <input
+                            type="number"
+                            class="form-control"
+                            id="floatingInput"
+                            placeholder="Minimum"
+                            style="min-width: 10rem"
+                          />
+                          <label for="floatingInput">Maximum</label>
+                        </div>
+                      </li>
+                    </div>
+                  </ul>
+                </div>
+              </div>
+              <div class="d-flex flex-column align-items-start">
+                <label class="form-label h6">Price Per Item</label>
+                <div class="btn-group">
+                  <button
+                    style="width: fit-content"
+                    type="button"
+                    class="btn btn-primary dropdown-toggle"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    Select
+                  </button>
+                  <ul class="dropdown-menu" style="padding: 0.5rem">
+                    <li><h6 class="dropdown-header">Select one</h6></li>
+                    <div class="d-flex flex-column gap-3">
+                      <li>
+                        <div class="form-floating">
+                          <input
+                            type="number"
+                            class="form-control"
+                            id="floatingInput"
+                            placeholder="Minimum"
+                            style="min-width: 10rem"
+                          />
+                          <label for="floatingInput">Minimum</label>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="form-floating">
+                          <input
+                            type="number"
+                            class="form-control"
+                            id="floatingInput"
+                            placeholder="Minimum"
+                            style="min-width: 10rem"
+                          />
+                          <label for="floatingInput">Maximum</label>
+                        </div>
+                      </li>
+                    </div>
+                  </ul>
+                </div>
+              </div>
+              <div class="d-flex flex-column align-items-start">
+                <label class="form-label h6">Total Price</label>
+                <div class="btn-group">
+                  <button
+                    style="width: fit-content"
+                    type="button"
+                    class="btn btn-primary dropdown-toggle"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    Select
+                  </button>
+                  <ul class="dropdown-menu" style="padding: 0.5rem">
+                    <li><h6 class="dropdown-header">Select one</h6></li>
+                    <div class="d-flex flex-column gap-3">
+                      <li>
+                        <div class="form-floating">
+                          <input
+                            type="number"
+                            class="form-control"
+                            id="floatingInput"
+                            placeholder="Minimum"
+                            style="min-width: 10rem"
+                          />
+                          <label for="floatingInput">Minimum</label>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="form-floating">
+                          <input
+                            type="number"
+                            class="form-control"
+                            id="floatingInput"
+                            placeholder="Minimum"
+                            style="min-width: 10rem"
+                          />
+                          <label for="floatingInput">Maximum</label>
+                        </div>
+                      </li>
+                    </div>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex flex-column align-items-start gap-3">
+          <div class="d-flex gap-4">
+            <button
+              class="btn btn-primary"
+              style="width: fit-content"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#sort"
+              aria-expanded="false"
+              aria-controls="sort"
+            >
+              ↓ Sort
+            </button>
+          </div>
+          <div class="collapse container-fluid" id="sort">
+            <div class="d-flex flex-column gap-3 p-3 border rounded">
+              <div class="d-flex flex-column">
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="order"
+                    id="ascending"
+                  />
+                  <label class="form-check-label" for="ascending"
+                    >Ascending</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="order"
+                    id="descending"
+                  />
+                  <label class="form-check-label" for="descending"
+                    >Descending</label
+                  >
+                </div>
+              </div>
+              <div class="d-flex align-items-center gap-2">
+                <label class="form-label h6">Sort By</label>
+                <div class="btn-group">
+                  <button
+                    style="width: fit-content"
+                    type="button"
+                    class="btn btn-primary dropdown-toggle"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    Select
+                  </button>
+                  <ul class="dropdown-menu" style="padding: 0.5rem">
+                    <li><h6 class="dropdown-header">Select one</h6></li>
+                    <li class="dropdown-item">Item 1</li>
+                    <li class="dropdown-item">Item 2</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
