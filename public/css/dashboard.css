@@ -1,11 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 :root {
     --primary-color: #375F74;
     --color-background: #f6f6f9;
     --poppins-font: 'Poppins', sans-serif;
     --raleway-font: 'Raleway', sans-serif;
+    --inter-font: 'Inter', sans-serif;
 }
 
 * {
@@ -15,11 +17,11 @@
 
 body {
     background: var(--color-background);
+    font-family: var(--inter-font);
 }
 
 nav {
     background-color: #375F74;
-    font-family: var(--raleway-font);
 }
 
 nav div .navbar-brand {
@@ -30,14 +32,56 @@ nav div .navbar-brand {
     font-weight: bold;
 }
 
+nav .navbar-brand {
+    padding: 10px 0px !important;
+}
+
 nav div a img {
     width: 30px;
 }
 
-nav .nav-link{
-    font-weight: 500;   
+nav .nav-link {
+    font-weight: 500;
 }
 
 nav .nav-link:hover {
     color: #d9d9d9 !important;
+}
+
+nav .nav-item {
+    padding-left: 20px !important;
+}
+
+.row div {
+    display: flex;
+    align-items: center;
+    background-color: rgb(227, 227, 227);
+    margin: 2px;
+    height: 50px;
+}
+
+.row:nth-child(1) {
+    font-weight: bold;
+}
+
+.row:nth-child(1) div{
+    background-color: #375f7446;
+}
+
+.row div:nth-child(1) {
+    width: 80px !important;
+}
+
+.row div:nth-child(2) {
+    width: 400px !important;
+}
+
+.row div:nth-child(3),
+.row div:nth-child(4),
+.row div:nth-child(5) {
+    width: 170px !important;
+}
+
+.row div:nth-child(6) {
+    width: 250px !important;
 }

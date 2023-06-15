@@ -8,17 +8,7 @@ const port = 3030
 app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.urlencoded({ extended: true }))
-
 app.use(favicon(path.join(__dirname, "public/assets/logos/logo-name.png")))
-
-app.use(
-  "/css",
-  express.static(path.join(__dirname, "node_modules/bootstrap/dist/css"))
-)
-app.use(
-  "/js",
-  express.static(path.join(__dirname, "node_modules/bootstrap/dist/js"))
-)
 app.use(express.static(path.join(__dirname, "public")))
 
 app.get("/", (req, res) => {
