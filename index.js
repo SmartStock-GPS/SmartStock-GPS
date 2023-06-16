@@ -11,19 +11,19 @@ app.use(express.urlencoded({ extended: true }))
 app.use(favicon(path.join(__dirname, "public/assets/logos/logo-name.png")))
 app.use(express.static(path.join(__dirname, "public")))
 
-app.get("/", (req, res) => {
+app.get("/login", (req, res) => {
   res.sendFile(path.join(__dirname, "views/login.html"))
 })
 
-app.get("/add-stock", (req, res) => {
-  res.sendFile(path.join(__dirname, "views/add_stock.html"))
-})
+// app.get("/add-stock", (req, res) => {
+//   res.sendFile(path.join(__dirname, "views/add_stock.html"))
+// })
 
 app.get("/view-transactions", (req, res) => {
   res.sendFile(path.join(__dirname, "views/view_transactions.html"))
 })
 
-app.get("/dashboard", (req, res) => {
+app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "views/dashboard.html"))
 })
 

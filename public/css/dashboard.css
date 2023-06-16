@@ -32,10 +32,6 @@ nav div .navbar-brand {
     font-weight: bold;
 }
 
-nav .navbar-brand {
-    padding: 10px 0px !important;
-}
-
 nav div a img {
     width: 30px;
 }
@@ -52,36 +48,56 @@ nav .nav-item {
     padding-left: 20px !important;
 }
 
-.row div {
-    display: flex;
-    align-items: center;
-    background-color: rgb(227, 227, 227);
-    margin: 2px;
-    height: 50px;
-}
-
-.row:nth-child(1) {
+.title {
+    font-size: 25px;
     font-weight: bold;
 }
 
-.row:nth-child(1) div{
+.card{
+    margin-bottom: 20px;
+}
+
+.card-header {
+    font-weight: bold;
     background-color: #375f7446;
 }
 
-.row div:nth-child(1) {
-    width: 80px !important;
+.list-group-item {
+    gap: 5px;
 }
 
-.row div:nth-child(2) {
-    width: 400px !important;
+.list-group-item div span:first-child {
+    font-family: var(--raleway-font);
+    font-weight: 600;
+    padding-right: 5px;
 }
 
-.row div:nth-child(3),
-.row div:nth-child(4),
-.row div:nth-child(5) {
-    width: 170px !important;
+.list-group-item div span:last-child {
+    font-weight: 500;
 }
 
-.row div:nth-child(6) {
-    width: 250px !important;
+.list-group-item div {
+    display: flex;
+    align-items: center;
+}
+
+.list-group-item div:last-child {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+button {
+    background-color: #375F74 !important;
+}
+
+.material-icons {
+    color: #375F74;
+    font-size: 24px;
+    cursor: pointer;
+    transition: 0.2s ease-in;
+}
+
+.material-icons:hover {
+    transform: scale(1.1);
 }
