@@ -68,7 +68,7 @@ nav .nav-item {
 
 .list-group-item div span:first-child {
     font-family: var(--raleway-font);
-    font-weight: 600;
+    font-weight: 500;
     padding-right: 5px;
 }
 
@@ -77,27 +77,11 @@ nav .nav-item {
 }
 
 .list-group-item div {
+    min-width: 25%;
     display: flex;
     align-items: center;
 }
 
-.icons-container {
-    display: flex;
-    gap: 10px;
-    justify-content: flex-end;
-}
-
-#addstock {
+.buttons {
     background-color: #375F74 !important;
-}
-
-.material-icons {
-    color: #375F74;
-    font-size: 24px;
-    cursor: pointer;
-    transition: 0.2s ease-in;
-}
-
-.material-icons:hover {
-    transform: scale(1.1);
 }

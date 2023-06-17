@@ -34,6 +34,10 @@
                         <a class="nav-link active" aria-current="page" href="/view-transactions">View Transactions</a>
                     </li>
                 </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-light" type="submit">Search</button>
+                </form>
             </div>
         </div>
     </nav>
@@ -42,7 +46,7 @@
         <div class="d-flex flex-column my-4">
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <span class="title">Stock Items</span>
-                <button class="btn btn-primary" style="width: fit-content" type="button" data-bs-toggle="collapse"
+                <button class="btn btn-primary" id="addstock" style="width: fit-content" type="button" data-bs-toggle="collapse"
                     data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                     + Add Stock
                 </button>
@@ -108,7 +112,7 @@
                         <span>Total Price:</span>
                         <span>Rs. 490</span>
                     </div>
-                    <div class="flex-fill">
+                    <div class="flex-fill icons-container">
                         <icon class="material-icons">edit_note</icon>
                         <icon class="material-icons">remove_circle</icon>
                         <icon class="material-icons">add_circle</icon>
@@ -134,7 +138,7 @@
                         <span>Total Price:</span>
                         <span>Rs. 490</span>
                     </div>
-                    <div class="flex-fill">
+                    <div class="flex-fill icons-container">
                         <icon class="material-icons">edit_note</icon>
                         <icon class="material-icons">remove_circle</icon>
                         <icon class="material-icons">add_circle</icon>
@@ -142,7 +146,6 @@
                 </li>
             </ul>
         </div>
-
     </div>
 </body>
 
