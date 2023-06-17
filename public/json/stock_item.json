@@ -1,0 +1,72 @@
+[
+    {
+        "name": "CM5I manuals",
+        "quantity": "8",
+        "price": "200",
+        "last_update": "Sat, June 17, 2023, 11:10 AM",
+        "last_sold": "Sun, June 18, 2023, 01:10 PM"
+    },
+    {
+        "name": "Drawing Book",
+        "quantity": "10",
+        "price": "400",
+        "last_update": "Wed, June 07, 2023, 09:10 AM",
+        "last_sold": "Fri, June 09, 2023, 12:30 PM"  
+    },
+    {
+        "name": "CM3I manuals",
+        "quantity": "15",
+        "price": "350",
+        "last_update": "Sat, 10, 2023, 10:20 AM",
+        "last_sold": "mon, June 12, 2023, 04:10 PM"
+    },
+    {
+        "name": "Files",
+        "quantity": "200",
+        "price": "10",
+        "last_update": "Thus, June 01, 2023, 1:10 PM",
+        "last_sold": "Sun, June 11, 2023, 05:35 PM"
+    },
+    {
+        "name": "Note Books",
+        "quantity": "200",
+        "price": "50",
+        "last_update": "Tues, June 06, 2023, 03:10 PM",
+        "last_sold": "Mon, June 12, 2023, 02:32 PM"
+    }
+    {
+        "name": "Pen",
+        "quantity": "1000",
+        "price": "5",
+        "last_update": "Fri, June 09, 2023, 11:10 AM",
+        "last_sold": "Sun, June 18, 2023, 01:10 PM"
+    },
+    {
+        "name": "Drawing Tool",
+        "quantity": "50",
+        "price": "150",
+        "last_update": "Wed, June 07, 2023, 09:10 AM",
+        "last_sold": "Fri, June 09, 2023, 12:30 PM"  
+    },
+    {
+        "name": "Writing pad",
+        "quantity": "15",
+        "price": "350",
+        "last_update": "Sat, 10, 2023, 10:20 AM",
+        "last_sold": "mon, June 12, 2023, 04:10 PM"
+    },
+    {
+        "name": "Drawing Tools",
+        "quantity": "260",
+        "price": "170",
+        "last_update": "Thus, June 01, 2023, 1:10 PM",
+        "last_sold": "Sun, June 11, 2023, 05:35 PM"
+    },
+    {
+        "name": "Pages",
+        "quantity": "2000",
+        "price": "50",
+        "last_update": "Tues, June 06, 2023, 03:10 PM",
+        "last_sold": "Mon, June 12, 2023, 02:32 PM"
+    }
+]
