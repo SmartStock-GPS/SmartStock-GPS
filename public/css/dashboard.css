@@ -87,17 +87,21 @@ nav .nav-item {
     justify-content: flex-end;
 }
 
-#addstock {
+#add-stock {
     background-color: #375F74 !important;
 }
 
 .material-icons {
     color: #375F74;
-    font-size: 24px;
+    font-size: 26px;
     cursor: pointer;
     transition: 0.2s ease-in;
 }
 
 .material-icons:hover {
     transform: scale(1.1);
+}
+
+.material-icons:active {
+    transform: scale(0.9);
 }

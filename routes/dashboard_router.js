@@ -12,5 +12,16 @@ router.post("/select_stock", async (req, res) => {
     res.json(items);
 });
 
+router.post("/add_stock", async (req, res) => {
+    await client.db("smartstock-db").collection("stock-items").insertOne({
+        name: req.body.name,
+        quantity: req.body.quantity,
+        price: req.body.price,
+        last_updated: req.body.last_updated
+    })
+        .then(() => res.json({ status: true }))
+        .catch(() => res.json({ status: false }))
+})
+
 
 module.exports = router
