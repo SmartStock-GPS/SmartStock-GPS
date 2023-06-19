@@ -11,7 +11,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(favicon(path.join(__dirname, "public/assets/logos/logo-name.png")))
 app.use(express.static(path.join(__dirname, "public")))
 
-app.use("/", require("./routes/dashboard_router"));
+app.use("/", require("./routes/dashboard_router"))
 
 app.get("/login", (req, res) => {
   res.sendFile(path.join(__dirname, "views/login.html"))
