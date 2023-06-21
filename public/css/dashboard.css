@@ -10,6 +10,24 @@
     --inter-font: 'Inter', sans-serif;
 }
 
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #375f749a;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
 * {
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
@@ -93,15 +111,38 @@ nav .nav-item {
 
 .material-icons {
     color: #375F74;
-    font-size: 26px;
+    font-size: 28px;
     cursor: pointer;
     transition: 0.2s ease-in;
+    border: none;
+    background-color: transparent;
+    padding: 0;
 }
 
 .material-icons:hover {
-    transform: scale(1.1);
+    color: black;
 }
 
 .material-icons:active {
     transform: scale(0.9);
+}
+
+.btn-box {
+    display: flex;
+    align-items: center;
+}
+
+.btn-box input {
+    border: 2px solid #375F74;
+    outline: none;
+    width: 65px;
+    height: 24px;
+    border-radius: 50px;
+    padding: 8px;
+    font-size: 14px;
+    color: #375F74;
+}
+
+.btn-box .material-icons {
+    margin-left: -26px;
 }
