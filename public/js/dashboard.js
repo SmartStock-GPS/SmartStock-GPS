@@ -32,12 +32,12 @@ $(document).ready(async (event) => {
                                 <div class="flex-fill icons-container">
                                     <button class="material-icons" onclick="edit('${element.name}')">edit_note</button>
                                     <div class="btn-box">
-                                        <input type="text" id="add-${element._id}" maxlength="3">
-                                        <button class="material-icons" onclick="update('${element._id}',true)">add_circle</button>
+                                        <input type="text" id="rem-${element._id}" maxlength="5">
+                                        <button class="material-icons" onclick="update('${element._id}',false)">remove_circle</button>
                                     </div>
                                     <div class="btn-box">
-                                        <input type="text" id="rem-${element._id}" maxlength="3">
-                                        <button class="material-icons" onclick="update('${element._id}',false)">remove_circle</button>
+                                        <input type="text" id="add-${element._id}" maxlength="5">
+                                        <button class="material-icons" onclick="update('${element._id}',true)">add_circle</button>
                                     </div>
                                 </div>
                             </li>
@@ -98,38 +98,38 @@ $('#add-stock').click(async function (event) {
                             text: 'Stock added successfully!',
                         })
                         $('#stock-area').append(`
-                        <div class="card">
-                            <div class="card-header">
-                                ${$('#name').val()}
-                            </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item d-md-flex d-grid">
-                                    <div class="flex-fill">
-                                        <span>Quantity:</span>
-                                        <span>${$('#quantity').val()}</span>
-                                    </div>
-                                    <div class="flex-fill">
-                                        <span>Price per item:</span>
-                                        <span>Rs. ${$('#price-per-item').val()}</span>
-                                    </div>
-                                    <div class="flex-fill">
-                                        <span>Total Price:</span>
-                                        <span>Rs. ${$('#total-price').val()}</span>
-                                    </div>
-                                    <div class="flex-fill icons-container">
-                                        <button class="material-icons" onclick="edit('${$('#name').val()}')">edit_note</button>
-                                        <div class="btn-box">
-                                            <input type="text" maxlength="3">
-                                            <button class="material-icons">add_circle</button>
+                            <div class="card">
+                                <div class="card-header">
+                                    ${$('#name').val()}
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item d-md-flex d-grid">
+                                        <div class="flex-fill">
+                                            <span>Quantity:</span>
+                                            <span id="q-${res.id}">${$('#quantity').val()}</span>
                                         </div>
-                                        <div class="btn-box">
-                                            <input type="text" maxlength="3">
-                                            <button class="material-icons">remove_circle</button>
+                                        <div class="flex-fill">
+                                            <span>Price per item:</span>
+                                            <span>Rs. ${$('#price-per-item').val()}</span>
                                         </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>`);
+                                        <div class="flex-fill">
+                                            <span>Total Price:</span>
+                                            <span>Rs. ${$('#total-price').val()}</span>
+                                        </div>
+                                        <div class="flex-fill icons-container">
+                                            <button class="material-icons" onclick="edit('${$('#name').val()}')">edit_note</button>
+                                            <div class="btn-box">
+                                                <input type="text" id="rem-${res.id}" maxlength="5">
+                                                <button class="material-icons" onclick="update('${res.id}',false)">remove_circle</button>
+                                            </div>
+                                            <div class="btn-box">
+                                                <input type="text" id="add-${res.id}" maxlength="5">
+                                                <button class="material-icons" onclick="update('${res.id}',true)">add_circle</button>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>`);
                         $('#name').val('');
                         $('#quantity').val('');
                         $('#price-per-item').val('');
@@ -240,6 +240,7 @@ async function update(_id, incre) {
                 title: 'Oops...',
                 text: 'Insufficient Stock!',
             })
+            $('#rem-' + _id).val('')
         } else {
             await fetch('/decrement_stock', {
                 method: 'POST',
@@ -264,3 +265,14 @@ async function update(_id, incre) {
         }
     }
 }
+
+$('#search').on('input', async (event) => {
+    query = $('#search').val().toLowerCase();
+    $('.card').each(function () {
+        if ($(this).find('.card-header').html().toLowerCase().includes(query)) {
+            $(this).css('display', 'flex');
+        } else {
+            $(this).css('display', 'none');
+        }
+    })
+})

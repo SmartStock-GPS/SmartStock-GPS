@@ -19,9 +19,11 @@ router.post("/add_stock", async (req, res) => {
         quantity: parseInt(req.body.quantity),
         price: req.body.price,
         last_updated: new Date()
-    })
-        .then(() => res.json({ status: true }))
-        .catch(() => res.json({ status: false }))
+    }).catch(() => res.json({ status: false }))
+
+    let item = await client.db("smartstock-db").collection("stock-items").find({ name: req.body.name }).toArray()
+    if (item.length != 0)
+        res.json({ status: true, id: item[0]._id })
 })
 
 router.post("/select_stock_from_name", async (req, res) => {
@@ -78,6 +80,10 @@ router.post('/decrement_stock', async (req, res) => {
         })
         .then(() => res.json({ status: true }))
         .catch(() => res.json({ status: false }))
+})
+
+router.post('/search_stock', async (req, res) => {
+
 })
 
 module.exports = router
