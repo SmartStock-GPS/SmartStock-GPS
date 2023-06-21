@@ -41,6 +41,10 @@ body {
     font-family: var(--inter-font);
 }
 
+.swal2-confirm {
+    background-color: #375F74 !important;
+}
+
 nav {
     background-color: #375F74;
 }
