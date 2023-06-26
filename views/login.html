@@ -1,37 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SmartStock GPS</title>
-    <link rel="stylesheet" href="css/login.css" />
-  </head>
-  <body>
-    <div class="main-container">
-      <div class="container">
-        <div class="heading">-- Admin Login --</div>
-        <form class="input-container">
-          <div class="inputbox">
-            <input type="text" name="username" id="username" required />
-            <span>Username</span>
-          </div>
-          <div class="inputbox">
-            <input type="text" name="password" id="password" required />
-            <span>Password</span>
-          </div>
-          <div class="btnbox">
-            <button class="backBtn" type="reset">
-              <i class="uil uil-navigator"></i>
-              <span class="btnText">Clear</span>
-            </button>
-            <button class="submit">
-              <span class="btnText">Login</span>
-              <i class="uil uil-navigator"></i>
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </body>
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>SmartStock GPS</title>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.min.css">
+	<link rel="stylesheet" href="/css/preloader_style.css">
+	<link rel="stylesheet" href="/css/login.css" />
+</head>
+
+<body>
+	<div id="preloader">
+		<div class="lds-ripple">
+			<div></div>
+			<div></div>
+		</div>
+	</div>
+
+	<div class="main-container">
+		<div class="container">
+			<div class="heading">
+				<a class="navbar-brand" href="/login">
+					<img class="mx-2" src="/img/logo.png">SMARTSTOCK GPS
+				</a>
+				<h2>Admin Login</h2>
+			</div>
+			<form id="login-form" class="input-container" method="post">
+				<div class="inputbox">
+					<input type="text" name="username" id="username" required autocomplete="off" />
+					<span>Username</span>
+				</div>
+				<div class="password-con">
+					<div class="inputbox">
+						<input type="password" name="password" id="password" required autocomplete="off" />
+						<span>Password</span>
+					</div>
+					<span class="material-icons" id="3">visibility_off</span>
+				</div>
+				<div class="btnbox">
+					<button class="backBtn" type="reset">
+						<i class="uil uil-navigator"></i>
+						<span class="btnText">CLEAR</span>
+					</button>
+					<button class="submit">
+						<span class="btnText">LOGIN</span>
+						<i class="uil uil-navigator"></i>
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+	<script src="/js/login.js" async></script>
+</body>
+
 </html>

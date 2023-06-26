@@ -5,12 +5,28 @@ const ObjectId = require('mongodb').ObjectId;
 const router = express.Router();
 
 router.get("", (req, res) => {
-    res.sendFile(path.join(__dirname, '../views/dashboard.html'));
+    if (req.session.authenticated)
+        res.sendFile(path.join(__dirname, '../views/dashboard.html'));
+    else
+        res.sendFile(path.join(__dirname, '../views/login.html'));
 });
+
+router.post("/check-user", async (req, res) => {
+    let result = await client.db("smartstock-db").collection("login-details").find({ username: req.body.username, password: req.body.password }).toArray();
+    if (result.length != 0) {
+        req.session.authenticated = true;
+        res.json({ status: true })
+    } else {
+        res.json({ status: false })
+    }
+})
 
 router.post("/select_stock", async (req, res) => {
     let items = await client.db("smartstock-db").collection("stock-items").find().sort({ last_updated: -1 }).toArray();
-    res.json(items);
+    res.json({
+        status: true,
+        items: items
+    });
 });
 
 router.post("/add_stock", async (req, res) => {
@@ -82,8 +98,10 @@ router.post('/decrement_stock', async (req, res) => {
         .catch(() => res.json({ status: false }))
 })
 
-router.post('/search_stock', async (req, res) => {
-
+router.post('/logout', async (req, res) => {
+    req.session.destroy()
+    res.json({ status: true })
 })
+
 
 module.exports = router

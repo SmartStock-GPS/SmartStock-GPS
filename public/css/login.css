@@ -15,6 +15,10 @@
     padding: 0;
     font-family: var(--inter-font);
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .main-container {
@@ -40,18 +44,43 @@
     border-radius: 8px;
 }
 
-.heading {
-    font-size: 20px;
-    text-transform: uppercase;
-    font-weight: 700;
-    color: var(--primary-color);
+.container .navbar-brand {
+    display: flex;
+    align-items: center;
+    color: #375F74;
+    font-size: 22px !important;
+    font-weight: bold;
+    gap: 10px;
+}
+
+.container a {
+    text-decoration: none;
+}
+
+.container a img {
+    width: 30px;
+}
+
+.container .heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    gap: 5px;
+}
+
+.container h2 {
+    margin-top: 25px;
+    margin-bottom: 5px;
+    color: #375F74;
 }
 
 .container .input-container {
     padding: 10px;
-    height: 180px;
     width: 100%;
     /*border: 2px solid black;*/
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -83,6 +112,7 @@
     outline: none;
     color: rgb(78, 78, 78);
     font-size: 0.9rem;
+    font-weight: 500;
 }
 
 .input-container .inputbox span {
@@ -111,9 +141,8 @@
 }
 
 .btnbox {
-    height: 80px;
     width: 270px;
-    padding: 5px 0px;
+    padding: 25px 0px;
     display: flex;
     justify-content: space-between;
     margin-top: 15px;
@@ -123,12 +152,13 @@
     border: none;
     outline: none;
     color: #fff;
-    border-radius: 3px;
+    border-radius: 50px;
     background-color: var(--primary-color);
     transition: all 0.3s linear;
     cursor: pointer;
+    font-size: 16px;
     width: 48%;
-    height: 30px;
+    height: 37px;
     font-weight: 700;
 }
 
@@ -143,4 +173,18 @@
 
 .btnbox .backBtn:hover {
     background: #5b8499;
+}
+
+.password-con {
+    display: flex;
+    align-items: center;
+    width: 270px;
+}
+
+.material-icons {
+    z-index: 10;
+    margin-left: -30px;
+    font-size: 20px;
+    color: #375F74;
+    cursor: pointer;
 }

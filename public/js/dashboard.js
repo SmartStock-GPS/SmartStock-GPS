@@ -9,8 +9,9 @@ $(document).ready(async (event) => {
     })
         .then((res) => res.json())
         .then(async function (res) {
-            res.forEach(element => {
-                $('#stock-area').append(`
+            if (res.status) {
+                res.items.forEach(element => {
+                    $('#stock-area').append(`
                     <div class="card">
                         <div class="card-header">
                             ${element.name}
@@ -44,12 +45,13 @@ $(document).ready(async (event) => {
                         </ul>
                     </div>                
                 `)
-                $('.btn-box input').keypress(async function (event) {
-                    var keycode = event.which;
-                    if (keycode < 48 || keycode > 57)
-                        event.preventDefault();
+                    $('.btn-box input').keypress(async function (event) {
+                        var keycode = event.which;
+                        if (keycode < 48 || keycode > 57)
+                            event.preventDefault();
+                    });
                 });
-            });
+            }
         })
 
     $("#preloader").css("display", "none");
@@ -273,6 +275,28 @@ $('#search').on('input', async (event) => {
             $(this).css('display', 'flex');
         } else {
             $(this).css('display', 'none');
+        }
+    })
+})
+
+$(".nav-item:last a").click(async function (event) {
+    await Swal.fire({
+        icon: 'question',
+        title: 'Are you sure?',
+        confirmButtonText: 'Yes',
+        confirmButtonColor: '#375F74',
+        showDenyButton: true,
+        denyButtonText: 'No'
+    }).then(async (res) => {
+        if (res.isConfirmed) {
+            await fetch('/logout', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            })
+                .then((res) => res.json())
+                .then((res) => window.location.replace('/'))
         }
     })
 })
