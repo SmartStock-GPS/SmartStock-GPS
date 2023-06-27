@@ -79,6 +79,7 @@ $('#add-stock').click(async function (event) {
             text: 'Please fill all the fields!',
         })
     } else {
+        $('body').unbind('click');
         if ($(this).html() == "Add") {
             await fetch('/add_stock', {
                 method: 'POST',
@@ -99,7 +100,8 @@ $('#add-stock').click(async function (event) {
                             title: 'Success',
                             text: 'Stock added successfully!',
                         })
-                        $('#stock-area').append(`
+                        let content = $('#stock-area').html();
+                        $('#stock-area').html(`
                             <div class="card">
                                 <div class="card-header">
                                     ${$('#name').val()}
@@ -131,7 +133,7 @@ $('#add-stock').click(async function (event) {
                                         </div>
                                     </li>
                                 </ul>
-                            </div>`);
+                            </div>` + content);
                         $('#name').val('');
                         $('#quantity').val('');
                         $('#price-per-item').val('');
@@ -168,6 +170,7 @@ $('#add-stock').click(async function (event) {
                     }
                 })
         }
+        $('body').bind('click');
     }
 })
 
