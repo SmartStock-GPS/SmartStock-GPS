@@ -1,0 +1,20 @@
+[
+    {
+        "name": "22509 Management Manual",
+        "current_stock": 70,
+        "updated_stock": 0,
+        "sold_stock": 0,
+        "purchase_price": "55",
+        "selling_price": "60",
+        "last_updated": "2023-06-17T05:40:00.000+00:00"
+    },
+    {
+        "name": "22617 MAD Manual",
+        "current_stock": 80,
+        "updated_stock": 0,
+        "sold_stock": 0,
+        "purchase_price": "90",
+        "selling_price": "100",
+        "last_updated": "2023-06-17T05:40:00.000+00:00"
+    }
+]

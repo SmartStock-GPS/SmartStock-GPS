@@ -5,10 +5,10 @@ const ObjectId = require('mongodb').ObjectId;
 const router = express.Router();
 
 router.get("", (req, res) => {
-    if (req.session.authenticated)
-        res.sendFile(path.join(__dirname, '../views/dashboard.html'));
-    else
-        res.sendFile(path.join(__dirname, '../views/login.html'));
+    // if (req.session.authenticated)
+    res.sendFile(path.join(__dirname, '../views/dashboard.html'));
+    // else
+    // res.sendFile(path.join(__dirname, '../views/login.html'));
 });
 
 router.post("/check-user", async (req, res) => {
@@ -32,8 +32,10 @@ router.post("/select_stock", async (req, res) => {
 router.post("/add_stock", async (req, res) => {
     await client.db("smartstock-db").collection("stock-items").insertOne({
         name: req.body.name,
-        quantity: parseInt(req.body.quantity),
-        price: req.body.price,
+        current_stock: parseInt(req.body.current_stock),
+        sold_stock: 0,
+        purchase_price: parseInt(req.body.purchase_price),
+        selling_price: parseInt(req.body.selling_price),
         last_updated: new Date()
     }).catch(() => res.json({ status: false }))
 
@@ -56,7 +58,8 @@ router.post("/update_stock", async (req, res) => {
         {
             $set: {
                 name: req.body.name,
-                price: req.body.price,
+                purchase_price: parseInt(req.body.purchase_price),
+                selling_price: parseInt(req.body.selling_price),
                 last_updated: new Date()
             }
         })
@@ -71,9 +74,10 @@ router.post('/increment_stock', async (req, res) => {
         },
         {
             $inc: {
-                quantity: parseInt(req.body.quantity)
+                current_stock: parseInt(req.body.updated_stock)
             },
             $set: {
+                updated_stock: parseInt(req.body.updated_stock),
                 last_updated: new Date()
             }
         })
@@ -88,12 +92,29 @@ router.post('/decrement_stock', async (req, res) => {
         },
         {
             $inc: {
-                quantity: parseInt(req.body.quantity) * -1
+                current_stock: parseInt(req.body.updated_stock) * -1
             },
             $set: {
+                updated_stock: parseInt(req.body.updated_stock) * -1,
+                sold_stock: parseInt(req.body.updated_stock),
                 last_sold: new Date()
             }
         })
+
+    let item = await client.db("smartstock-db").collection("stock-items").find({ _id: new ObjectId(req.body.id) }).toArray()
+
+    await client.db("smartstock-db").collection("transactions").insertOne({
+        name: item[0].name,
+        quantity: parseInt(req.body.updated_stock),
+        selling_price: parseInt(item[0].selling_price),
+        date_sold: new Date()
+    })
+        .then(() => res.json({ status: true }))
+        .catch(() => res.json({ status: false }))
+})
+
+router.post('/delete_stock', async (req, res) => {
+    await client.db("smartstock-db").collection("stock-items").deleteOne({ _id: new ObjectId(req.body.id) })
         .then(() => res.json({ status: true }))
         .catch(() => res.json({ status: false }))
 })
