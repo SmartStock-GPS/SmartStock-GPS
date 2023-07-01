@@ -92,25 +92,45 @@ router.post('/decrement_stock', async (req, res) => {
         },
         {
             $inc: {
-                current_stock: parseInt(req.body.updated_stock) * -1
+                current_stock: parseInt(req.body.updated_stock) * -1,
+                sold_stock: parseInt(req.body.updated_stock)
             },
             $set: {
                 updated_stock: parseInt(req.body.updated_stock) * -1,
-                sold_stock: parseInt(req.body.updated_stock),
                 last_sold: new Date()
             }
         })
 
-    let item = await client.db("smartstock-db").collection("stock-items").find({ _id: new ObjectId(req.body.id) }).toArray()
+    let item = await client.db("smartstock-db").collection("stock-items").find({ _id: new ObjectId(req.body.id) }).toArray();
 
-    await client.db("smartstock-db").collection("transactions").insertOne({
-        name: item[0].name,
-        quantity: parseInt(req.body.updated_stock),
-        selling_price: parseInt(item[0].selling_price),
-        date_sold: new Date()
-    })
-        .then(() => res.json({ status: true }))
-        .catch(() => res.json({ status: false }))
+    let transaction = await client.db("smartstock-db").collection("transactions").find({ name: item[0].name }).toArray();
+
+    if (transaction.length == 0 || compareDates(transaction[0].date_sold, new Date()) != 0) {
+        await client.db("smartstock-db").collection("transactions").insertOne({
+            name: item[0].name,
+            quantity: parseInt(req.body.updated_stock),
+            selling_price: parseInt(item[0].selling_price),
+            date_sold: new Date()
+        })
+            .then(() => res.json({ status: true }))
+            .catch(() => res.json({ status: false }))
+    } else {
+        await client.db("smartstock-db").collection("transactions").updateOne(
+            {
+                name: item[0].name,
+            },
+            {
+                $inc: {
+                    quantity: parseInt(req.body.updated_stock),
+                },
+                $set: {
+                    date_sold: new Date()
+                }
+            }
+        )
+            .then(() => res.json({ status: true }))
+            .catch(() => res.json({ status: false }))
+    }
 })
 
 router.post('/delete_stock', async (req, res) => {
@@ -123,6 +143,20 @@ router.post('/logout', async (req, res) => {
     req.session.destroy()
     res.json({ status: true })
 })
+
+function compareDates(date1, date2) {
+    const year1 = date1.getFullYear();
+    const month1 = date1.getMonth();
+    const day1 = date1.getDate();
+    const year2 = date2.getFullYear();
+    const month2 = date2.getMonth();
+    const day2 = date2.getDate();
+    if (year1 !== year2)
+        return year1 - year2;
+    if (month1 !== month2)
+        return month1 - month2;
+    return day1 - day2;
+}
 
 
 module.exports = router

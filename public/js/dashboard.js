@@ -255,7 +255,7 @@ async function update(_id, incre) {
                 title: 'Oops...',
                 text: 'Please enter quantity to update!',
             })
-        else if (parseInt($('#rem-' + _id).val()) > parseInt($('#q-' + _id).html())) {
+        else if (parseInt($('#rem-' + _id).val()) > parseInt($('#q-' + _id).html().substring(0, $('#q-' + _id).html().indexOf(' ')))) {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',

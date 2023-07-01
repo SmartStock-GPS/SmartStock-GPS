@@ -21,9 +21,7 @@ app.use(express.static(path.join(__dirname, "public")))
 
 app.use("/", require("./routes/dashboard_router"))
 
-app.get("/view-transactions", (req, res) => {
-    res.sendFile(path.join(__dirname, "views/view_transactions.html"))
-})
+app.use("/view-transactions", require("./routes/view_transactions_router"))
 
 app.listen(port, () => {
     console.log(`SmartStock GPS listening on http://localhost:${port}`)
