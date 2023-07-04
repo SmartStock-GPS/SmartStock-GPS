@@ -78,6 +78,11 @@ nav .nav-item {
     font-weight: 400;
 }
 
+
+.list-group-item .flex-even:first-child span {
+    font-weight: 400;
+}
+
 .list-group-item div {
     min-width: 25%;
     display: flex;
