@@ -13,6 +13,9 @@
 * {
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 body {
@@ -67,7 +70,6 @@ nav .nav-item {
 }
 
 .list-group-item div span:first-child {
-    font-family: var(--raleway-font);
     font-weight: 500;
     padding-right: 5px;
 }
@@ -84,4 +86,19 @@ nav .nav-item {
 
 .buttons {
     background-color: #375F74 !important;
+}
+
+.flex-even {
+    flex: 1;
+}
+
+.month-card .card-header {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.importantRule {
+    display: none !important;
 }
