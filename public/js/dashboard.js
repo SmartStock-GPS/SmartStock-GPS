@@ -108,9 +108,11 @@ $('#export-to-pdf').click(async function (event) {
         .then(res => res.json())
         .then(async function (res) {
             if (res.status) {
+                $('#pdf').empty()
+
                 $('#pdf').append(`
-                <table class="table table-striped">
-                    <thead class="thead-light">
+                <table class="table table-bordered mt-2">
+                    <thead>
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Name</th>
@@ -118,15 +120,26 @@ $('#export-to-pdf').click(async function (event) {
                             <th scope="col">Sold Stock</th>
                             <th scope="col">Purchase Price</th>
                             <th scope="col">Selling Price</th>
-                            <th scope="col">Total Profit</th>
                             <th scope="col">Total Sale</th>
+                            <th scope="col">Total Profit</th>
                         </tr>
                     </thead>
                     <tbody id="tbody"></tbody>
                 </table>
                 `)
+
+                let totalSale = 0
+                let totalProfit = 0
+
                 res.items.forEach((element, index) => {
-                    console.log(element)
+                    const thisTotalSale =
+                        element.sold_stock * element.selling_price
+                    const thisTotalProfit =
+                        (element.selling_price - element.purchase_price) *
+                        element.sold_stock
+
+                    totalSale += thisTotalSale
+                    totalProfit += thisTotalProfit
 
                     $('#tbody').append(`
                         <tr>
@@ -136,37 +149,36 @@ $('#export-to-pdf').click(async function (event) {
                             <td>${element.sold_stock}</td>
                             <td>${element.purchase_price}</td>
                             <td>${element.selling_price}</td>
-                            <td>${
-                                (element.selling_price -
-                                    element.purchase_price) *
-                                element.sold_stock
-                            }</td>
-                            <td>${
-                                element.sold_stock * element.selling_price
-                            }</td>
+                            <td>${thisTotalSale}</td>
+                            <td>${thisTotalProfit}</td>
                         </tr>
                     `)
                 })
-            }
 
-            const element = document.getElementById('pdf')
-            const options = {
-                filename: 'stock_items.pdf',
-                margin: 0,
-                html2canvas: {scale: 2},
-                jsPDF: {
-                    unit: 'cm',
-                    format: 'a4',
-                    orientation: 'portrait'
+                $('#pdf').prepend(`
+                    <b>Total Sale: Rs. ${totalSale}</b><br>
+                    <b>Total Profit: Rs. ${totalProfit}</b>
+                `)
+
+                const element = document.getElementById('pdf')
+                const options = {
+                    filename: 'stock_items.pdf',
+                    margin: 2,
+                    html2canvas: {scale: 2},
+                    jsPDF: {
+                        unit: 'cm',
+                        format: 'a4',
+                        orientation: 'portrait'
+                    }
                 }
+                html2pdf()
+                    .set(options)
+                    .from(element)
+                    .save()
+                    .then(pdf => {
+                        $('#pdf').empty()
+                    })
             }
-            html2pdf()
-                .set(options)
-                .from(element)
-                .save()
-                .then(pdf => {
-                    $('#pdf').empty()
-                })
         })
 })
 
