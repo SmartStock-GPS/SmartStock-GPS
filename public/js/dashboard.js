@@ -50,7 +50,7 @@ $(document).ready(async event => {
                                         <input type="text" id="rem-${
                                             element._id
                                         }" maxlength="5">
-                                        <button class="material-icons" onclick="update('${
+                                        <button class="material-icons"  style="color: #b85858" onclick="update('${
                                             element._id
                                         }',false)">remove_circle</button>
                                     </div>
@@ -58,11 +58,11 @@ $(document).ready(async event => {
                                         <input type="text" id="add-${
                                             element._id
                                         }" maxlength="5">
-                                        <button class="material-icons" onclick="update('${
+                                        <button class="material-icons"  style="color: #58b868" onclick="update('${
                                             element._id
                                         }',true)">add_circle</button>
                                     </div>
-                                    <span class="material-icons" onclick="deleteStock('${
+                                    <span class="material-icons" style="color: #b85858" onclick="deleteStock('${
                                         element._id
                                     }')">delete</span>
                                 </div>
@@ -108,26 +108,6 @@ $('#export-to-pdf').click(async function (event) {
         .then(res => res.json())
         .then(async function (res) {
             if (res.status) {
-                $('#pdf').empty()
-
-                $('#pdf').append(`
-                <table class="table table-bordered mt-2">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Current Stock</th>
-                            <th scope="col">Sold Stock</th>
-                            <th scope="col">Purchase Price</th>
-                            <th scope="col">Selling Price</th>
-                            <th scope="col">Total Sale</th>
-                            <th scope="col">Total Profit</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tbody"></tbody>
-                </table>
-                `)
-
                 let totalSale = 0
                 let totalProfit = 0
 
@@ -141,9 +121,9 @@ $('#export-to-pdf').click(async function (event) {
                     totalSale += thisTotalSale
                     totalProfit += thisTotalProfit
 
-                    $('#tbody').append(`
+                    $('#pdf tbody').append(`
                         <tr>
-                            <th scope="row">${index + 1}</th>
+                            <td>${index + 1}</td>
                             <td>${element.name}</td>
                             <td>${element.current_stock}</td>
                             <td>${element.sold_stock}</td>
@@ -158,6 +138,14 @@ $('#export-to-pdf').click(async function (event) {
                 $('#pdf').prepend(`
                     <b>Total Sale: Rs. ${totalSale}</b><br>
                     <b>Total Profit: Rs. ${totalProfit}</b>
+                `)
+
+                $('#pdf tbody').append(`
+                    <tr>
+                        <td colspan="6"><b>Total</b></td>
+                        <td><b>${totalSale}</b></td>
+                        <td><b>${totalProfit}</b></td>
+                    </tr>
                 `)
 
                 const element = document.getElementById('pdf')
@@ -176,7 +164,7 @@ $('#export-to-pdf').click(async function (event) {
                     .from(element)
                     .save()
                     .then(pdf => {
-                        $('#pdf').empty()
+                        $('#pdf tbody').empty()
                     })
             }
         })
