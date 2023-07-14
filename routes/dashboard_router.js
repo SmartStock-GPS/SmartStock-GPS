@@ -5,10 +5,10 @@ const ObjectId = require('mongodb').ObjectId;
 const router = express.Router();
 
 router.get("", (req, res) => {
-    // if (req.session.authenticated)
-    res.sendFile(path.join(__dirname, '../views/dashboard.html'));
-    // else
-    // res.sendFile(path.join(__dirname, '../views/login.html'));
+    if (req.session.authenticated)
+        res.sendFile(path.join(__dirname, '../views/dashboard.html'));
+    else
+        res.sendFile(path.join(__dirname, '../views/login.html'));
 });
 
 router.post("/check-user", async (req, res) => {
