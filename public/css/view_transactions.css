@@ -118,3 +118,21 @@ thead {
 .importantRule {
     display: none !important;
 }
+
+.material-icons-outlined {
+    font-size: 20px;
+    cursor: pointer;
+    color: white;
+}
+
+#export-to-pdf {
+    background-color: #375f74 !important;
+    font-size: 14px !important;
+}
+
+#export-to-pdf div {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    justify-content: center;
+}

@@ -144,8 +144,23 @@ tr:nth-child(even) {
     padding: 0;
 }
 
-.material-icons:hover {
-    color: black;
+.material-icons-outlined {
+    font-size: 20px;
+    cursor: pointer;
+    color: white;
+}
+
+#btnCollapse,
+#export-to-pdf {
+    background-color: #375f74 !important;
+    font-size: 14px !important;
+}
+
+#export-to-pdf div {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    justify-content: center;
 }
 
 .material-icons:active {
@@ -181,4 +196,25 @@ tr:nth-child(even) {
     font-family: var(--inter-font) !important;
     font-weight: 400 !important;
     color: rgb(3, 167, 3);
+}
+
+.remove button,
+.delete {
+    color: #b85858 !important;
+}
+
+.add button {
+    color: #58b868 !important;
+}
+
+.material-icons:hover {
+    color: black !important;
+}
+
+.add input {
+    border: 2px solid #58b868;
+}
+
+.remove input {
+    border: 2px solid #b85858;
 }

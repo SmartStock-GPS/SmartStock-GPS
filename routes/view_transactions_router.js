@@ -61,7 +61,6 @@ router.post('/select_transactions', async (req, res) => {
             }
         }
         monthly_sales[dates[dates.length - 1].split(" ")[0]] = month_total
-        console.log(monthly_sales);
 
         res.json({
             status: true,

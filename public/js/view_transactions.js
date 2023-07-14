@@ -8,25 +8,20 @@ $(document).ready(async event => {
         .then(res => res.json())
         .then(res => {
             if (res.status) {
-                console.log(res)
                 for (let i = 0; i < res.dates.length; i++) {
                     if (
                         i == 0 ||
                         (i != 0 &&
                             res.dates[i].split(' ')[0] !=
-                                res.dates[i - 1].split(' ')[0])
+                            res.dates[i - 1].split(' ')[0])
                     ) {
                         $('#t_container').append(`
                         <div class="card month-card">
                             <div class="card-header text-bg-secondary">
                                 <span>${res.dates[i]
-                                    .split(' ')[0]
-                                    .toUpperCase()} MONTH SALE</span>
-                                <span>Rs. ${
-                                    res.monthly_sales[
-                                        res.dates[i].split(' ')[0]
-                                    ]
-                                }</span>
+                                .split(' ')[0]
+                                .toUpperCase()} MONTH SALE</span>
+                                <span></span>
                             </div>
                         </div>
                         `)
@@ -36,7 +31,7 @@ $(document).ready(async event => {
                         <div class="card" id="${i}">
                         	<div class="card-header">
                         		<span>${res.dates[i]}</span>
-                        		<span class="float-end">Rs. ${res.total_sales[i]}</span>
+                        		<span class="float-end"></span>
                         	</div>
                         	<ul class="list-group list-group-flush"></ul>
                         </div>
@@ -65,6 +60,7 @@ $(document).ready(async event => {
                     })
                 }
                 $('.card .list-group-item').css('display', 'none')
+                calculate_monthly_sales();
             } else {
                 $('#t_container').append('<h5>No transactions found</h5>')
             }
@@ -72,6 +68,27 @@ $(document).ready(async event => {
 
     $('#preloader').css('display', 'none')
 })
+
+function calculate_monthly_sales() {
+    $('.card').each(function () {
+        if (!$(this).hasClass('month-card')) {
+            let total = 0;
+            $(this).find('.list-group-item').each(function () {
+                if (!$(this).hasClass('importantRule'))
+                    total += parseInt($(this).find('.flex-even').last().find('span').last().html().split(' ')[1])
+            })
+            $(this).find('.card-header span').last().html(`Rs. ${total}`)
+        }
+    })
+
+    $('.month-card').each(function () {
+        let month_total = 0;
+        $(this).nextUntil('.month-card').each(function () {
+            month_total += parseInt($(this).find('.card-header span').last().html().split(' ')[1])
+        })
+        $(this).find('.card-header span').last().html(`Rs. ${month_total}`)
+    })
+}
 
 $('#export-to-pdf').click(async function (event) {
     await fetch('/view-transactions/select_transactions', {
@@ -83,7 +100,7 @@ $('#export-to-pdf').click(async function (event) {
         .then(res => res.json())
         .then(res => {
             if (res.status) {
-                const {total_sales} = res
+                const { total_sales } = res
                 Object.entries(res.transactions).forEach(
                     ([strDate, transactions], i) => {
                         const numTransactions = transactions.length
@@ -99,17 +116,15 @@ $('#export-to-pdf').click(async function (event) {
 
                         $('#day-wise tbody').append(`
                             <tr>
-                                <td rowspan="${numTransactions} noBorderRowClass">${
-                            i + 1
-                        }</td>
+                                <td rowspan="${numTransactions} noBorderRowClass">${i + 1
+                            }</td>
                                 <td rowspan="${numTransactions} noBorderRowClass">${formattedDate}</td>
                                 <td>${transactions[0].name}</td>
                                 <td>${transactions[0].quantity}</td>
                                 <td>${transactions[0].selling_price}</td>
                                 <td>${transactions[0].total}</td>
-                                <td rowspan="${numTransactions} noBorderRowClass">${
-                            total_sales[i]
-                        }</td>
+                                <td rowspan="${numTransactions} noBorderRowClass">${total_sales[i]
+                            }</td>
                             </tr>
                         `)
 
@@ -126,7 +141,7 @@ $('#export-to-pdf').click(async function (event) {
                     }
                 )
 
-                const {monthly_sales} = res
+                const { monthly_sales } = res
                 Object.entries(monthly_sales).forEach(([month, sale], i) => {
                     $('#month-wise tbody').append(`
                         <tr>
@@ -141,7 +156,7 @@ $('#export-to-pdf').click(async function (event) {
                 const options = {
                     filename: 'transactions.pdf',
                     margin: 2,
-                    html2canvas: {scale: 2},
+                    html2canvas: { scale: 2 },
                     jsPDF: {
                         unit: 'cm',
                         format: 'a4',
@@ -204,11 +219,12 @@ $('#search').on('input', async event => {
         if (
             $(this).find('.list-group-item').hasClass('importantRule') &&
             $(this).find('.list-group-item').length ==
-                $(this).find('.importantRule').length
+            $(this).find('.importantRule').length
         ) {
             $(this).addClass('importantRule')
         } else {
             $(this).removeClass('importantRule')
         }
     })
+    calculate_monthly_sales();
 })

@@ -105,7 +105,7 @@ router.post('/decrement_stock', async (req, res) => {
 
     let transaction = await client.db("smartstock-db").collection("transactions").find({ name: item[0].name }).toArray();
 
-    if (transaction.length == 0 || compareDates(transaction[0].date_sold, new Date()) != 0) {
+    if (transaction.length == 0 || compareDates(transaction[0].date_sold, new Date()) != 0 || transaction[0].selling_price != item[0].selling_price) {
         await client.db("smartstock-db").collection("transactions").insertOne({
             name: item[0].name,
             quantity: parseInt(req.body.updated_stock),
