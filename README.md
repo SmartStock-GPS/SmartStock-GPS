@@ -1,5 +1,5 @@
 # SmartStock-GPS
-One stop solution for simple inventory management.<br/>
+A simple inventory management system.<br/>
 Website URL - [https://smartstock-gps.onrender.com/](https://smartstock-gps.onrender.com/)
 
 ### Technologies Used  
